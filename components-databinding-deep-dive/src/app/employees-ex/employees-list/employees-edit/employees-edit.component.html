@@ -1,0 +1,51 @@
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" [attr.data-target]="'#' + employeeData.id" *ngIf="modalType == 'add'">
+  Add new Employee
+</button>
+<button type="button" class="btn btn-default" aria-label="Edit"  data-toggle="tooltip" data-placement="left" title="Edit" data-toggle="modal" [attr.data-target]="'#' + employeeData.id" *ngIf="modalType == 'edit'">
+  <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+</button>
+
+<!-- Modal -->
+<div class="modal fade" [id]="employeeData.id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content  text-left">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">{{modalType}} <span *ngIf="modalType == 'edit'"> employee #{{employeeData.id}}</span></h4>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="employeeForm">
+          <div class="form-group row">
+            <label for="name" class="col-xs-3">Name</label>
+            <input type="text" id="name" [formControl]="employeeForm.controls.name" class="col-xs-6">
+          </div>
+          <div class="form-group row">
+            <label for="email" class="col-xs-3">Email</label>
+            <input type="text" id="email"  [formControl]="employeeForm.controls.email" class="col-xs-6">
+          </div>
+          <div class="form-group row">
+            <label for="location" class="col-xs-3">Location</label>
+            <input type="text" id="location"  [formControl]="employeeForm.controls.location" class="col-xs-6">
+          </div>
+          <div class="form-group row">
+            <label for="phone" class="col-xs-3">Phone number</label>
+            <input type="text" id="phone"  [formControl]="employeeForm.controls.phone" class="col-xs-6">
+          </div>
+          <div class="form-group row">
+            <label for="department" class="col-xs-3">Department</label>
+            <input type="text" id="department"  [formControl]="employeeForm.controls.department" class="col-xs-6">
+          </div>
+          <div class="form-group row">
+            <label for="position" class="col-xs-3">Position</label>
+            <input type="text" id="position"  [formControl]="employeeForm.controls.position" class="col-xs-6">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clearForm()">Close</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="modalType=='add' ? onEmployeeAdd() : onEmployeeEdit()">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

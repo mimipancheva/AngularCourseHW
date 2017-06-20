@@ -1,0 +1,49 @@
+<div class="row">
+  <div class="col-xs-10 col-xs-offset-1">
+    <div class="panel panel-default">
+      <div class="panel-heading clearfix">
+        <h2 class="text-left">Employees</h2>
+        <p class="text-right">
+          <app-employees-edit [modalType]="'add'" [employeeData]="{id: null,name:'',email:'',location:'',phone:'',department:'',position:''}" (addEmployee)="addEmployee($event)"></app-employees-edit>
+        </p>
+      </div>
+      <div class="panel-body">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Location</th>
+              <th>Phone Number</th>
+              <th>Department</th>
+              <th>Position</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let employee of EmployeesArray; let i = index;">
+              <td>{{employee.id}}</td>
+              <td>{{employee.name}}</td>
+              <td>{{employee.email}}</td>
+              <td>{{employee.location}}</td>
+              <td>{{employee.phone}}</td>
+              <td>{{employee.department}}</td>
+              <td>{{employee.position}}</td>
+              <td>
+                <span class="btn-group">
+                  <app-employees-edit [modalType]="'edit'" [employeeData]="EmployeesArray[i]" (editEmployee)="editEmployee($event, i)"></app-employees-edit>
+                  <span>
+                    <button type="button" class="btn btn-default" aria-label="Delete"  data-toggle="tooltip" data-placement="left" title="Delete" (click)="deleteEmployee(i)">
+                      <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                    </button>
+                  </span>
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

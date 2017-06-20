@@ -1,0 +1,8 @@
+<div class="container-inner">
+    <app-contact-form (contact)="addContact($event)"></app-contact-form>
+    <hr/>
+    <h2>Contacts: </h2>
+    <ul class="row list-group">
+        <app-contact *ngFor="let contact of contacts" [contact]="contact" class="col-xs-4"></app-contact>
+    </ul>
+</div>
